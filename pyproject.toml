@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "medeval-tests"
+version = "1.0.0"
+description = "Example datasets and test cases for medeval-framework (template to fork)"
+authors = ["Your Team <team@example.com>"]
+readme = "README.md"
+license = "MIT"
+# This is not a package, just a test suite
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+# Local dependencies in editable/debug mode
+medeval-framework = {path = "../medeval", develop = true}
+medeval-helpers = {path = "../medevalHelpers", develop = true}
+# Test dependencies
+pytest = "^8.0.0"
+pytest-cov = "^6.0.0"
+pyyaml = ">=6.0"
+
+[tool.poetry.extras]
+# No extras for now
+
+[tool.poetry.group.dev.dependencies]
+# Development dependencies are in main section for now
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--verbose",
+    "--strict-markers",
+    "--tb=short",
+]
+
+[tool.coverage.run]
+source = ["."]
+omit = ["*/tests/*", "*/__pycache__/*", "*/examples/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

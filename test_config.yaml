@@ -1,0 +1,27 @@
+# Test configuration for medevalTests integration tests
+# This is a simplified version for testing purposes
+
+logging:
+  log_dir: ".logs"
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  console_level: "INFO"
+  file_level: "DEBUG"
+  rotation:
+    enabled: false
+
+artifacts:
+  save_predictions: true
+  save_metrics: true
+  save_quality_gate: true
+
+execution:
+  mode: "standard"
+
+dataset:
+  format: "jsonl"
+  encoding: "utf-8"
+
+# Minimal config - no LLM settings needed for basic tests
+llm:
+  provider: "none"  # No LLM needed for basic evaluators
